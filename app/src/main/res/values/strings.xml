@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">EncostaAi</string>
+    <string name="title_activity_perfil">perfil</string>
+    <string name="confirm_password">Confirmar nova senha</string>
+    <string name="new_password">Nova senha</string>
+    <string name="password">Senha</string>
+    <string name="confirm">Confirmar</string>
+    <string name="email">e-mail</string>
+    <string name="user_name">Nome</string>
+    <string name="user_image">User image</string>
+</resources>
