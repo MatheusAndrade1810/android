@@ -6,13 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.database.DatabaseReference;
+
 import encostai.encostai.com.br.encostaai.R;
 import encostai.encostai.com.br.encostaai.activity.cadastro.CadastroActivity;
 import encostai.encostai.com.br.encostaai.activity.inicial.InicialActivity;
+import encostai.encostai.com.br.encostaai.utils.FirebaseConfig;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,4 +39,5 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 break;
         }
     }
+
 }
