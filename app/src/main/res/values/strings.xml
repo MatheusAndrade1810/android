@@ -8,4 +8,10 @@
     <string name="email">e-mail</string>
     <string name="user_name">Nome</string>
     <string name="user_image">User image</string>
+    <string name="title_activity_teste">teste</string>
+    <string name="title_activity_inicial">Inicial</string>
+    <string name="title_activity_cadastro">CadastroActivity</string>
+    <string name="title_activity_melhores_locais">MelhoresLocais</string>
+    <string name="title_activity_perfil">PerfilActivity</string>
+    <string name="title_activity_politica_termos">PoliticaTermos</string>
 </resources>
