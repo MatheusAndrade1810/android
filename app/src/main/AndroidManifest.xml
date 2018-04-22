@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="encostai.encostai.com.br.encostaai">
 
+    <!-- Permissões -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Localização próxima -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Localização exata -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Internet -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +22,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC7rETmE3A4ld1q7Zzmc5330DnV-o-onAo" />
+
+        <activity
+            android:name=".activity.inicial.InicialActivity"
+            android:label="@string/title_activity_inicial"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.cadastro.CadastroActivity"
+            android:label="@string/title_activity_cadastro"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.melhoresLocais.MelhoresLocaisActivity"
+            android:label="@string/title_activity_melhores_locais"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.perfil.PerfilActivity"
+            android:label="@string/title_activity_perfil"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.politicaTermos.PoliticaTermosActivity"
+            android:label="@string/title_activity_politica_termos"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
