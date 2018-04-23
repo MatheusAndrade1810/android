@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">EncostaAi</string>
-    <string name="title_activity_perfil">perfil</string>
     <string name="confirm_password">Confirmar nova senha</string>
     <string name="new_password">Nova senha</string>
     <string name="password">Senha</string>

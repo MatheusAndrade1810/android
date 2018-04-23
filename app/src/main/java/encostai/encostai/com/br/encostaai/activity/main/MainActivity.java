@@ -1,10 +1,8 @@
-package encostai.encostai.com.br.encostaai.activity.inicial;
+package encostai.encostai.com.br.encostaai.activity.main;
 
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,7 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import encostai.encostai.com.br.encostaai.R;
 
-public class InicialActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, IMainView {
 
     private GoogleMap mMap;
     private LocationManager locationManager;
