@@ -1,15 +1,11 @@
-package encostai.encostai.com.br.encostaai.activity.melhoresLocais;
+package encostai.encostai.com.br.encostaai.activity.bestsPlaces;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import encostai.encostai.com.br.encostaai.R;
 
-public class MelhoresLocaisActivity extends AppCompatActivity {
+public class BestsSpotsActivity extends AppCompatActivity implements IBestsSpotsView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package encostai.encostai.com.br.encostaai.activity.perfil;
+package encostai.encostai.com.br.encostaai.activity.profile;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import encostai.encostai.com.br.encostaai.R;
 
 
-public class PerfilActivity extends AppCompatActivity implements View.OnClickListener {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener,IProfileView {
 
     private EditText name;
     private EditText email;

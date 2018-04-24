@@ -27,23 +27,23 @@
             android:value="AIzaSyC7rETmE3A4ld1q7Zzmc5330DnV-o-onAo" />
 
         <activity
-            android:name=".activity.inicial.InicialActivity"
+            android:name=".activity.main.MainActivity"
             android:label="@string/title_activity_inicial"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.cadastro.CadastroActivity"
+            android:name=".activity.signUp.SignUpActivity"
             android:label="@string/title_activity_cadastro"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.melhoresLocais.MelhoresLocaisActivity"
+            android:name=".activity.bestsPlaces.BestsSpotsActivity"
             android:label="@string/title_activity_melhores_locais"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.perfil.PerfilActivity"
+            android:name=".activity.profile.ProfileActivity"
             android:label="@string/title_activity_perfil"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.politicaTermos.PoliticaTermosActivity"
+            android:name=".activity.termsPolicies.TermsPoliciesActivity"
             android:label="@string/title_activity_politica_termos"
             android:theme="@style/AppTheme"></activity>
     </application>
