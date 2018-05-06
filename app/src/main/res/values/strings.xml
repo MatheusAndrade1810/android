@@ -13,4 +13,5 @@
     <string name="title_activity_melhores_locais">MelhoresLocais</string>
     <string name="title_activity_perfil">PerfilActivity</string>
     <string name="title_activity_politica_termos">PoliticaTermos</string>
+    <string name="switch_button_exposure">Ficar visível para outros usuários</string>
 </resources>

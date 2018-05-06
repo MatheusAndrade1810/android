@@ -10,7 +10,7 @@ public class BestsSpotsActivity extends AppCompatActivity implements IBestsSpots
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_melhores_locais);
+        setContentView(R.layout.activity_best_places);
 
     }
 

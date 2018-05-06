@@ -6,17 +6,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.signUp.SignUpActivity"
-    android:orientation="vertical" >
-
+    android:orientation="vertical"
+    tools:context=".activity.signUp.SignUpActivity">
 
 
     <LinearLayout
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".activity.login.LoginActivity"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        tools:context=".activity.signUp.SignUpActivity">
 
         <TextView
             android:id="@+id/TxtNome"
@@ -29,18 +28,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="16"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPersonName" />
 
     </LinearLayout>
-
 
 
     <LinearLayout
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".activity.login.LoginActivity"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        tools:context=".activity.signUp.SignUpActivity">
 
         <TextView
             android:id="@+id/TxtNovoLogin"
@@ -60,8 +58,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".activity.login.LoginActivity"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        tools:context=".activity.signUp.SignUpActivity">
 
         <TextView
             android:id="@+id/TxtNovaSenha"
@@ -82,8 +80,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".activity.login.LoginActivity"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        tools:context=".activity.signUp.SignUpActivity">
 
         <TextView
             android:id="@+id/TxtConfirNovaSenha"
@@ -100,20 +98,42 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/Exposure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:context=".activity.signUp.SignUpActivity">
+
+        <EditText
+            android:id="@+id/TxtExposure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/switch_button_exposure" />
+
+        <Switch
+            android:id="@+id/ExposureButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="13" />
+
+
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".activity.login.LoginActivity"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        tools:context=".activity.login.LoginActivity">
 
         <Button
             android:id="@+id/cadastrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClick"
             android:layout_marginLeft="150dp"
+            android:onClick="onClick"
             android:text="Cadastrar" />
 
 
-    </LinearLayout >
+    </LinearLayout>
 </LinearLayout>
