@@ -14,6 +14,8 @@ package encostai.encostai.com.br.encostaai.models;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
+import java.util.List;
+
 import encostai.encostai.com.br.encostaai.utils.FirebaseConfig;
 
 public class User {
@@ -23,6 +25,7 @@ public class User {
     private String email;
     private String password;
     private boolean exposure;
+    private List<String> favorites;
 
     public User() {
     }
@@ -81,4 +84,11 @@ public class User {
         this.exposure = exposure;
     }
 
+    public List<String> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<String> favorites) {
+        this.favorites = favorites;
+    }
 }
