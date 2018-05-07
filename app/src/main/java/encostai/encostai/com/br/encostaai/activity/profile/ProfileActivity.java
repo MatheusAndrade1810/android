@@ -1,18 +1,18 @@
 package encostai.encostai.com.br.encostaai.activity.profile;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.support.v7.app.AppCompatActivity;
+        import android.support.v7.widget.Toolbar;
+        import android.view.View;
+        import android.widget.EditText;
+        import android.widget.Switch;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
 
-import encostai.encostai.com.br.encostaai.R;
-import encostai.encostai.com.br.encostaai.utils.Preferences;
+        import encostai.encostai.com.br.encostaai.R;
+        import encostai.encostai.com.br.encostaai.utils.Preferences;
 
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener, IProfileView {
