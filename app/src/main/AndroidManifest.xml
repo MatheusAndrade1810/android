@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC7rETmE3A4ld1q7Zzmc5330DnV-o-onAo" />
@@ -45,6 +46,14 @@
         <activity
             android:name=".activity.termsPolicies.TermsPoliciesActivity"
             android:label="@string/title_activity_politica_termos"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ListMapedSpots.ListPublicMapedSpots"
+            android:label="@string/title_activity_list_public_maped_spots"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.ListMapedSpots.ListPrivatesMapedSpots"
+            android:label="@string/title_activity_list_privates_maped_spots"
             android:theme="@style/AppTheme"></activity>
     </application>
 
