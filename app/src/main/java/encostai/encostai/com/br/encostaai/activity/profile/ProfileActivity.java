@@ -3,6 +3,7 @@ package encostai.encostai.com.br.encostaai.activity.profile;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -40,6 +41,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         name.setHint(preferences.getName());
         email.setText(preferences.getEmail());
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
 

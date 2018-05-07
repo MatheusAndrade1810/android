@@ -8,10 +8,24 @@
     <string name="user_name">Nome</string>
     <string name="user_image">User image</string>
     <string name="title_activity_teste">teste</string>
-    <string name="title_activity_inicial">Inicial</string>
     <string name="title_activity_cadastro">CadastroActivity</string>
     <string name="title_activity_melhores_locais">MelhoresLocais</string>
     <string name="title_activity_perfil">PerfilActivity</string>
-    <string name="title_activity_politica_termos">PoliticaTermos</string>
     <string name="switch_button_exposure">Ficar visível para outros usuários</string>
+
+    <!-- Activities -->
+    <string name="title_activity_inicial">EncostaAí</string>
+    <string name="title_activity_politica_termos">Politica e Termos</string>
+    <string name="title_activity_list_public_maped_spots">Locais Públicos</string>
+    <string name="title_activity_list_privates_maped_spots">Locais Privados</string>
+
+    <!-- Menu Inicial Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+
+
 </resources>
