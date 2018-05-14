@@ -39,5 +39,9 @@ public class Preferences {
         return preferences.getString(EMAIL_KEY, null);
     }
 
+    public void clearData(){
+        editor.clear();
+    }
+
 
 }

@@ -1,13 +1,9 @@
 package encostai.encostai.com.br.encostaai.activity.main;
 
+import android.Manifest;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,31 +21,31 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import encostai.encostai.com.br.encostaai.R;
-import encostai.encostai.com.br.encostaai.activity.ListMapedSpots.ListPrivatesMapedSpots;
-import encostai.encostai.com.br.encostaai.activity.ListMapedSpots.ListPublicMapedSpots;
 import encostai.encostai.com.br.encostaai.activity.bestsPlaces.BestsSpotsActivity;
 import encostai.encostai.com.br.encostaai.activity.login.LoginActivity;
 import encostai.encostai.com.br.encostaai.activity.profile.ProfileActivity;
-import encostai.encostai.com.br.encostaai.activity.signUp.SignUpActivity;
 import encostai.encostai.com.br.encostaai.activity.termsPolicies.TermsPoliciesActivity;
-import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
+import encostai.encostai.com.br.encostaai.utils.Permission;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements IMainView, OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     //AppCompatActivity
     private GoogleMap mMap;
-    private LocationManager locationManager;
+    private String[] permissions = new String[]{
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+    };
+
+    private IMainPresenter presenter;
+
 
     private static final LatLng PERTH = new LatLng(-8.0630769, -34.87146094);
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicial);
+        setContentView(R.layout.activity_main);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -67,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        Permission.permissionsValidate(1, this, permissions);
+
+        presenter = new MainPresenter(this, new MainInteractor(this));
     }
 
     @Override
@@ -80,24 +78,24 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
+
+        mMap = presenter.onMapReady(this, googleMap);
+
+        goTo(new LatLng(-8.06301848, -34.8714073));
 
 
-        mMap = googleMap;
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-
-        LatLng antigo = new LatLng(-8.06301848, -34.8714073);
-        mMap.addMarker(new MarkerOptions().position(antigo).title("Recife Antigo "));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(antigo));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f));
-
-
-    }
-
-    @Override
-    public void onMapClick(LatLng latLng) {
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                addMarker(latLng,"Toque");
+                goTo(latLng);
+            }
+        });
 
     }
+
+
 
 
     // Navegação lateral
@@ -126,6 +124,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             intent = new Intent(MainActivity.this, TermsPoliciesActivity.class);
             startActivity(intent);
 
+        } else if(id == R.id.nav_SignOut){
+            presenter.signOut();
+            intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         }
 
 
@@ -138,19 +141,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onClick(View v) {
 
-        Intent intent;
-        switch (v.getId()) {
+    }
 
-            case R.id.ListaPublicos:
-                intent = new Intent(MainActivity.this, ListPublicMapedSpots.class);
-                startActivity(intent);
-                break;
-            case R.id.ListaPrivados:
-                intent = new Intent(MainActivity.this, ListPrivatesMapedSpots.class);
-                startActivity(intent);
-                break;
-        }
+    @Override
+    public void addMarker(LatLng latLng, String tittle){
+        mMap.addMarker(new MarkerOptions().position(latLng)).setTitle(tittle);
 
+    }
 
+    @Override
+    public void goTo(LatLng latLng){
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f));
     }
 }

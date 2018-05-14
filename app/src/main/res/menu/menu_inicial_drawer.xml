@@ -4,27 +4,32 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-    <item
-        android:id="@+id/nav_Profile"
-        android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="Perfil" />
-    <item
-        android:id="@+id/nav_BestsPlaces"
-        android:icon="@drawable/ic_place_black_24dp"
-        android:title="Melhores Locais" />
-    <item
-        android:id="@+id/nav_Favorites"
-        android:icon="@drawable/ic_star_border_black_24dp"
-        android:title="Favoritos" />
-    <item
-        android:id="@+id/nav_Payment"
-        android:icon="@drawable/ic_credit_card_black_24dp"
-        android:title="Pagamento" />
+        <item
+            android:id="@+id/nav_Profile"
+            android:icon="@drawable/ic_account_circle_black_24dp"
+            android:title="Perfil" />
+        <item
+            android:id="@+id/nav_BestsPlaces"
+            android:icon="@drawable/ic_place_black_24dp"
+            android:title="Melhores Locais" />
+        <item
+            android:id="@+id/nav_Favorites"
+            android:icon="@drawable/ic_star_border_black_24dp"
+            android:title="Favoritos" />
+        <item
+            android:id="@+id/nav_Payment"
+            android:icon="@drawable/ic_credit_card_black_24dp"
+            android:title="Pagamento" />
 
-    <item
-        android:id="@+id/nav_TermsPolicies"
-        android:icon="@drawable/ic_assignment_black_24dp"
-        android:title="Termos e Política" />
+        <item
+            android:id="@+id/nav_TermsPolicies"
+            android:icon="@drawable/ic_assignment_black_24dp"
+            android:title="Termos e Política" />
+
+        <item
+            android:id="@+id/nav_SignOut"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="Termos e Política" />
 
     </group>
 </menu>

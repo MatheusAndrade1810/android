@@ -47,14 +47,6 @@
             android:name=".activity.termsPolicies.TermsPoliciesActivity"
             android:label="@string/title_activity_politica_termos"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.ListMapedSpots.ListPublicMapedSpots"
-            android:label="@string/title_activity_list_public_maped_spots"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.ListMapedSpots.ListPrivatesMapedSpots"
-            android:label="@string/title_activity_list_privates_maped_spots"
-            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
