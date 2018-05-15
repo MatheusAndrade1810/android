@@ -1,23 +1,13 @@
 package encostai.encostai.com.br.encostaai.activity.login;
 
-import android.support.annotation.NonNull;
 import android.util.Patterns;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import encostai.encostai.com.br.encostaai.models.User;
-import encostai.encostai.com.br.encostaai.utils.Base64Custom;
 import encostai.encostai.com.br.encostaai.utils.FirebaseConfig;
-import encostai.encostai.com.br.encostaai.utils.Preferences;
 
 public class LoginInteractor implements ILoginInteractor {
 

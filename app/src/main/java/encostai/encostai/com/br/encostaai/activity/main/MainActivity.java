@@ -2,6 +2,7 @@ package encostai.encostai.com.br.encostaai.activity.main;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -19,6 +21,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import encostai.encostai.com.br.encostaai.R;
 import encostai.encostai.com.br.encostaai.activity.bestsPlaces.BestsSpotsActivity;
@@ -82,16 +85,12 @@ public class MainActivity extends AppCompatActivity implements IMainView, OnMapR
 
         mMap = presenter.onMapReady(this, googleMap);
 
+        presenter.drawPrivatePark();
+        presenter.drawStreetPark();
+
         goTo(new LatLng(-8.06301848, -34.8714073));
 
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                addMarker(latLng,"Toque");
-                goTo(latLng);
-            }
-        });
 
     }
 
@@ -146,7 +145,15 @@ public class MainActivity extends AppCompatActivity implements IMainView, OnMapR
     @Override
     public void addMarker(LatLng latLng, String tittle){
         mMap.addMarker(new MarkerOptions().position(latLng)).setTitle(tittle);
+    }
 
+    @Override
+    public void addLine(LatLng latLng1, LatLng latLng2, String tittle){
+        mMap.addPolyline(new PolylineOptions()
+            .add(latLng1,latLng2)
+        .width(25)
+        .color(Color.BLUE)
+        .geodesic(true));
     }
 
     @Override

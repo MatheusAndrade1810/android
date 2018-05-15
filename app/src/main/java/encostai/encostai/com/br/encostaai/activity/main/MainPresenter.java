@@ -4,9 +4,13 @@ import android.location.Location;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MainPresenter implements IMainPresenter, IMainInteractor.MainListner{
+import java.util.ArrayList;
+
+import encostai.encostai.com.br.encostaai.models.PrivateParking;
+import encostai.encostai.com.br.encostaai.models.StreetParking;
+
+public class MainPresenter implements IMainPresenter, IMainInteractor.MainListener {
 
     private IMainView mainView;
     private IMainInteractor mainInteractor;
@@ -37,6 +41,30 @@ public class MainPresenter implements IMainPresenter, IMainInteractor.MainListne
 
     @Override
     public void onLocationChange(Location location){
-        mainView.addMarker(new LatLng(location.getLatitude(),location.getLongitude()),"Location");
+
+    }
+
+    @Override
+    public void onPrivateParkRecived(ArrayList<PrivateParking> privateParkingList){
+        for (PrivateParking privateParking : privateParkingList) {
+            mainView.addMarker(new LatLng(privateParking.getCordenate().getLatitude(), privateParking.getCordenate().getLongitude()), privateParking.getName());
+        }
+    }
+
+    @Override
+    public void onStreetParkListRecived(ArrayList<StreetParking> streetParkList) {
+        for (StreetParking streetParking : streetParkList) {
+            mainView.addLine(new LatLng(streetParking.getCoordenate1().getLatitude(),streetParking.getCoordenate1().getLongitude()),new LatLng(streetParking.getCoordenate2().getLatitude(),streetParking.getCoordenate2().getLongitude()),streetParking.getName());
+        }
+    }
+
+    @Override
+    public void drawPrivatePark(){
+        mainInteractor.getPrivateParks(this);
+    }
+
+    @Override
+    public void drawStreetPark() {
+        mainInteractor.getStreetParks(this);
     }
 }

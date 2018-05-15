@@ -6,4 +6,8 @@ public interface IMainPresenter {
     void signOut();
 
     GoogleMap onMapReady(MainActivity context, GoogleMap googleMap);
+
+    void drawPrivatePark();
+
+    void drawStreetPark();
 }

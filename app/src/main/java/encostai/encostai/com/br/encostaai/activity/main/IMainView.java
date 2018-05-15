@@ -9,5 +9,7 @@ public interface IMainView {
 
     void addMarker(LatLng latLng, String tittle);
 
+    void addLine(LatLng latLng1, LatLng latLng2, String tittle);
+
     void goTo(LatLng latLng);
 }

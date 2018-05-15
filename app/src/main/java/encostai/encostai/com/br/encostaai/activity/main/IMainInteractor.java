@@ -1,20 +1,31 @@
 package encostai.encostai.com.br.encostaai.activity.main;
 
-import android.app.Activity;
 import android.location.Location;
 
 import com.google.android.gms.maps.GoogleMap;
 
+import java.util.ArrayList;
+
+import encostai.encostai.com.br.encostaai.models.PrivateParking;
+import encostai.encostai.com.br.encostaai.models.StreetParking;
+
 public interface IMainInteractor {
 
-    interface MainListner{
+    void getPrivateParks(MainListener listner);
+
+    void getStreetParks(MainListener listner);
+
+    interface MainListener {
 
         void onError();
 
         void onLocationChange(Location location);
 
+        void onPrivateParkRecived(ArrayList<PrivateParking> privateParkingList);
+
+        void onStreetParkListRecived(ArrayList<StreetParking> streetParkList);
     }
     void signOut();
 
-    GoogleMap onMapReady(MainActivity context, GoogleMap mMap, MainListner listner);
+    GoogleMap onMapReady(MainActivity context, GoogleMap mMap, MainListener listner);
 }
