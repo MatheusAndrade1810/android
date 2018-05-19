@@ -1,6 +1,5 @@
 package encostai.encostai.com.br.encostaai.models;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
@@ -10,25 +9,27 @@ public class PrivateParking {
 
     private String id;
     private String name;
-    private int spaceQnt;
-    private MyLatLng cordenate;
-    private int EnptySpots;
-    private double rating;
+    private String spaceQnt;
+    private String latitude;
+    private String longitude;
+    private String EnptySpots;
+    private String rating;
 
 
     public PrivateParking() {
     }
 
-    public PrivateParking(String id, String name, int spaceQnt, double cordenate1, double cordenate2 ) {
+    public PrivateParking(String id, String name, String spaceQnt, String latitude, String longetude ) {
         this.id = id;
         this.name = name;
         this.spaceQnt = spaceQnt;
-        this.cordenate = cordenate;
+        this.latitude = latitude;
+        this.longitude = longetude;
     }
 
     public void save(){
         DatabaseReference databaseReference = FirebaseConfig.getDatabaseReference();
-        databaseReference.child("privateParking").push().setValue(this);
+        databaseReference.child("privateParking").child(getId()).setValue(this);
     }
 
     public void setId(String id) {
@@ -48,39 +49,43 @@ public class PrivateParking {
         return name;
     }
 
-    public void setSpaceQnt(int spaceQnt) {
+    public void setSpaceQnt(String spaceQnt) {
         this.spaceQnt = spaceQnt;
     }
 
-    public int getSpaceQnt() {
+    public String getSpaceQnt() {
         return spaceQnt;
     }
 
-
-    public MyLatLng getCordenate() {
-        return cordenate;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setCordenate(MyLatLng cordenate) {
-        this.cordenate = cordenate;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 
-    public int getEnptySpots() {
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getEnptySpots() {
         return EnptySpots;
     }
 
-    public void setEnptySpots(int enptySpots) {
+    public void setEnptySpots(String enptySpots) {
         EnptySpots = enptySpots;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public double getRating() {
+    public String getRating() {
         return rating;
     }
 
-
-
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
 }

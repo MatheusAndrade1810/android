@@ -1,22 +1,22 @@
 package encostai.encostai.com.br.encostaai.models;
 
 public class MyLatLng {
-    private double Latitude;
-    private double Longitude;
+    private double latitude;
+    private double longitude;
 
     public double getLatitude() {
-        return Latitude;
+        return latitude;
     }
 
     public void setLatitude(double latitude) {
-        Latitude = latitude;
+        this.latitude = latitude;
     }
 
     public double getLongitude() {
-        return Longitude;
+        return longitude;
     }
 
     public void setLongitude(double longitude) {
-        Longitude = longitude;
+        this.longitude = longitude;
     }
 }

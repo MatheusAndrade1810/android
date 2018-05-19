@@ -1,6 +1,5 @@
 package encostai.encostai.com.br.encostaai.models;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
@@ -10,42 +9,31 @@ public class StreetParking {
 
     private String id;
     private String name;
-    private int spaceQnt;
-    private MyLatLng cordenate1;
-    private MyLatLng cordenate2;
-    private double probability;
-    private double rating;
+    private String spaceQnt;
+    private String latitude1;
+    private String longitude1;
+    private String latitude2;
+    private String longitude2;
+    private String probability;
+    private String rating;
 
-    public double getProbability() {
-        return probability;
-    }
-
-    public void setProbability(Double probability) {
-        this.probability = probability;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(Double rating) {
-        this.rating = rating;
-    }
 
     public StreetParking() {
     }
 
-    public StreetParking(String id, String name, int spaceQnt, MyLatLng cordenate1, MyLatLng cordenate2 ) {
+    public StreetParking(String id, String name, String spaceQnt, String latitude1, String longetude1, String latitude2, String longetude2 ) {
         this.id = id;
         this.name = name;
         this.spaceQnt = spaceQnt;
-        this.cordenate1 = cordenate1;
-        this.cordenate2 = cordenate2;
+        this.latitude1 = latitude1;
+        this.longitude1 = longetude1;
+        this.latitude2 = latitude2;
+        this.longitude2 = longetude2;
     }
 
     public void save(){
         DatabaseReference databaseReference = FirebaseConfig.getDatabaseReference();
-        databaseReference.child("streetParking").push().setValue(this);
+        databaseReference.child("streetParking").child(getId()).setValue(this);
     }
 
     public void setId(String id) {
@@ -65,28 +53,60 @@ public class StreetParking {
         return name;
     }
 
-    public void setSpaceQnt(int spaceQnt) {
+    public void setSpaceQnt(String spaceQnt) {
         this.spaceQnt = spaceQnt;
     }
 
-    public int getSpaceQnt() {
+    public String getSpaceQnt() {
         return spaceQnt;
     }
 
-    public void setCoordenate1(MyLatLng coordenadaLocal1) {
-        this.cordenate1 = coordenadaLocal1;
+    public String getLatitude1() {
+        return latitude1;
     }
 
-    public MyLatLng getCoordenate1() {
-        return cordenate1;
+    public void setLatitude1(String latitude1) {
+        this.latitude1 = latitude1;
     }
 
-    public void setCoordenate2(MyLatLng coordenadaLocal2) {
-        this.cordenate2 = coordenadaLocal2;
+    public String getLongitude1() {
+        return longitude1;
     }
 
-    public MyLatLng getCoordenate2() {
-        return cordenate2;
+    public void setLongitude1(String longitude1) {
+        this.longitude1 = longitude1;
+    }
+
+    public String getLatitude2() {
+        return latitude2;
+    }
+
+    public void setLatitude2(String latitude2) {
+        this.latitude2 = latitude2;
+    }
+
+    public String getLongitude2() {
+        return longitude2;
+    }
+
+    public void setLongitude2(String longitude2) {
+        this.longitude2 = longitude2;
+    }
+
+    public void setProbability(String probability) {
+        this.probability = probability;
+    }
+
+    public String getProbability() {
+        return probability;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
 }

@@ -36,7 +36,7 @@
             android:label="@string/title_activity_cadastro"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.bestsPlaces.BestsSpotsActivity"
+            android:name=".activity.ParkingList.ParkingListActivity"
             android:label="@string/title_activity_melhores_locais"
             android:theme="@style/AppTheme" />
         <activity

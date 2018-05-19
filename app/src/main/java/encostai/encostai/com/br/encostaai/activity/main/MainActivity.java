@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -24,7 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import encostai.encostai.com.br.encostaai.R;
-import encostai.encostai.com.br.encostaai.activity.bestsPlaces.BestsSpotsActivity;
+import encostai.encostai.com.br.encostaai.activity.ParkingList.ParkingListActivity;
 import encostai.encostai.com.br.encostaai.activity.login.LoginActivity;
 import encostai.encostai.com.br.encostaai.activity.profile.ProfileActivity;
 import encostai.encostai.com.br.encostaai.activity.termsPolicies.TermsPoliciesActivity;
@@ -109,9 +108,8 @@ public class MainActivity extends AppCompatActivity implements IMainView, OnMapR
            startActivity(intent);
 
        } else if (id == R.id.nav_BestsPlaces) {
-            intent = new Intent(MainActivity.this, BestsSpotsActivity.class);
+            intent = new Intent(MainActivity.this, ParkingListActivity.class);
             startActivity(intent);
-
 
         } else if (id == R.id.nav_Favorites) {
 
