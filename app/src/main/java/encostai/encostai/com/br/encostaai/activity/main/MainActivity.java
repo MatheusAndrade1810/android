@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, OnMapR
             intent = new Intent(MainActivity.this, ProfileActivity.class);
            startActivity(intent);
 
-       } else if (id == R.id.nav_BestsPlaces) {
+       } else if (id == R.id.nav_ParkList) {
             intent = new Intent(MainActivity.this, ParkingListActivity.class);
             startActivity(intent);
 

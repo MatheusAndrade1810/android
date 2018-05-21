@@ -54,7 +54,7 @@ public class MainPresenter implements IMainPresenter, IMainInteractor.MainListen
     @Override
     public void onStreetParkListRecived(ArrayList<StreetParking> streetParkList) {
         for (StreetParking streetParking : streetParkList) {
-            mainView.addLine(new LatLng(Double.parseDouble(streetParking.getLatitude1()),Double.parseDouble(streetParking.getLongitude1())),new LatLng(Double.parseDouble(streetParking.getLatitude1()),Double.parseDouble(streetParking.getLongitude2())),streetParking.getName());
+            mainView.addLine(new LatLng(Double.parseDouble(streetParking.getLatitude1()),Double.parseDouble(streetParking.getLongitude1())),new LatLng(Double.parseDouble(streetParking.getLatitude2()),Double.parseDouble(streetParking.getLongitude2())),streetParking.getName());
         }
     }
 

@@ -37,7 +37,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.ParkingList.ParkingListActivity"
-            android:label="@string/title_activity_melhores_locais"
+            android:label="@string/title_activity_parking_list"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.profile.ProfileActivity"

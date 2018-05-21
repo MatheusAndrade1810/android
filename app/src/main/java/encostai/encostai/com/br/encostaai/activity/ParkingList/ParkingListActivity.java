@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -15,6 +19,8 @@ import encostai.encostai.com.br.encostaai.models.SimpleParking;
 public class ParkingListActivity extends AppCompatActivity implements IParkingListView {
 
     private ListView listView;
+    private CheckBox privateCheck;
+    private CheckBox publicCheck;
     private ArrayList<SimpleParking> simpleParkingList;
     private ArrayAdapter<SimpleParking> adapter;
     private IParkingListPresenter presenter;
@@ -28,6 +34,8 @@ public class ParkingListActivity extends AppCompatActivity implements IParkingLi
         setSupportActionBar(toolbar);
 
         listView = (ListView) findViewById(R.id.lv_parking);
+        privateCheck = (CheckBox) findViewById(R.id.chk_private);
+        publicCheck = (CheckBox) findViewById(R.id.chk_public);
 
         simpleParkingList = new ArrayList<SimpleParking>();
         adapter = new LocalAdapter(ParkingListActivity.this,simpleParkingList);
@@ -35,15 +43,30 @@ public class ParkingListActivity extends AppCompatActivity implements IParkingLi
 
         presenter = new ParkingListPresenter(this,new ParkingListInteractor(this));
 
-        presenter.getParkingList();
+        presenter.getParkingList(publicCheck.isChecked(),privateCheck.isChecked());
 
 
+        privateCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                presenter.getParkingList(publicCheck.isChecked(),privateCheck.isChecked());
+            }
+        });
+
+        publicCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                presenter.getParkingList(publicCheck.isChecked(),privateCheck.isChecked());
+            }
+        });
     }
+
 
     @Override
-    public void showPrivateParkingList(ArrayList<SimpleParking> simplePrivateParkingList) {
-        this.simpleParkingList = simplePrivateParkingList;
-        Log.i("2Id",this.simpleParkingList.get(0).getId());
+    public void showSimpleParkingList(ArrayList<SimpleParking> simpleParkingList){
+        this.simpleParkingList.clear();
+        this.simpleParkingList.addAll(simpleParkingList);
         adapter.notifyDataSetChanged();
     }
+
 }

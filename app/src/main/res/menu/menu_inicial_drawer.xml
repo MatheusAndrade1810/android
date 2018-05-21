@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_account_circle_black_24dp"
             android:title="Perfil" />
         <item
-            android:id="@+id/nav_BestsPlaces"
+            android:id="@+id/nav_ParkList"
             android:icon="@drawable/ic_place_black_24dp"
-            android:title="Melhores Locais" />
+            android:title="Lista de Estacionamentos" />
         <item
             android:id="@+id/nav_Favorites"
             android:icon="@drawable/ic_star_border_black_24dp"

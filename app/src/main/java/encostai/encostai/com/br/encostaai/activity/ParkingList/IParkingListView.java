@@ -5,5 +5,5 @@ import java.util.ArrayList;
 import encostai.encostai.com.br.encostaai.models.SimpleParking;
 
 public interface IParkingListView {
-    void showPrivateParkingList(ArrayList<SimpleParking> simplePrivateParkingList);
+    void showSimpleParkingList(ArrayList<SimpleParking> simpleStreetParkingList);
 }

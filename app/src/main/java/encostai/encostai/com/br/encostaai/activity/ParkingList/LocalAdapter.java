@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import encostai.encostai.com.br.encostaai.R;
 import encostai.encostai.com.br.encostaai.models.SimpleParking;
+import encostai.encostai.com.br.encostaai.utils.KeyWords;
 
 class LocalAdapter extends ArrayAdapter<SimpleParking> {
 
@@ -46,9 +47,9 @@ class LocalAdapter extends ArrayAdapter<SimpleParking> {
             vh.parkName.setText(simpleParking.getName());
             vh.parkRating.setText(String.valueOf(simpleParking.getRating()));
 
-            if (position % 2 == 1) {
+            if (simpleParking.getType().equals(KeyWords.STREETPARKING)) {
                 _view.setBackgroundResource(R.color.colorAccent);
-            } else {
+            } else if (simpleParking.getType().equals(KeyWords.PRIVATEPARKING)){
                 _view.setBackgroundResource(R.color.colorPrimary);
             }
             Log.i("adapter", simpleParking.getId());
