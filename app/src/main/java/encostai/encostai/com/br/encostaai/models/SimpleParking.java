@@ -11,6 +11,8 @@ public class SimpleParking {
     private String name;
     private String rating;
     private String type;
+    private String latitude;
+    private String longitude;
 
     public String getType() {
         return type;
@@ -47,4 +49,19 @@ public class SimpleParking {
         this.rating = rating;
     }
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 }

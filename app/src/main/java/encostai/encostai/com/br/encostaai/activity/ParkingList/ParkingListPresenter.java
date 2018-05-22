@@ -1,9 +1,14 @@
 package encostai.encostai.com.br.encostaai.activity.ParkingList;
 
+import android.location.Location;
 import android.util.Log;
+import android.widget.RadioGroup;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
+import encostai.encostai.com.br.encostaai.R;
 import encostai.encostai.com.br.encostaai.models.PrivateParking;
 import encostai.encostai.com.br.encostaai.models.SimpleParking;
 import encostai.encostai.com.br.encostaai.models.StreetParking;
@@ -21,52 +26,79 @@ public class ParkingListPresenter implements IParkingListPresenter, IParkingList
     private ArrayList<SimpleParking> streetParkingList;
     private boolean streetReady = false;
     private boolean publicChecked;
+    private RadioGroup radioGroup;
+    private Location location;
 
-    public ParkingListPresenter(IParkingListView parkingListView, ParkingListInteractor parkingListInteractor) {
+    public ParkingListPresenter(IParkingListView parkingListView, ParkingListInteractor parkingListInteractor, Location location) {
         this.parkingListView = parkingListView;
         this.parkingListInteractor = parkingListInteractor;
-        this.simpleParkingList = new ArrayList<SimpleParking>();
         this.privateParkingList = new ArrayList<SimpleParking>();
         this.streetParkingList = new ArrayList<SimpleParking>();
+        this.simpleParkingList = new ArrayList<SimpleParking>();
+        this.location = location;
     }
 
+
     @Override
-    public void getParkingList(boolean publicChecked, boolean privateChecked) {
+    public synchronized void getParkingList(boolean publicChecked, boolean privateChecked, RadioGroup sortRadioGrouop) {
+        streetReady = false;
+        privateReady = false;
+        this.publicChecked = publicChecked;
+        this.privateChecked = privateChecked;
+        this.radioGroup = sortRadioGrouop;
+
+
         if (publicChecked) {
-            this.publicChecked = publicChecked;
-            parkingListInteractor.getStreetParkingList(this);
+            if (streetParkingList.isEmpty()) {
+                parkingListInteractor.getStreetParkingList(this);
+            } else {
+                streetReady = true;
+            }
+        } else {
+            streetParkingList.clear();
         }
         if (privateChecked) {
-            this.privateChecked = privateChecked;
-            parkingListInteractor.getPrivateParkingList(this);
+            if (privateParkingList.isEmpty()) {
+                parkingListInteractor.getPrivateParkingList(this);
+            } else {
+                privateReady = true;
+            }
+        } else {
+            privateParkingList.clear();
         }
+        joinParkingList();
     }
 
     @Override
-    public void onPrivateParkingListRecived(ArrayList<PrivateParking> privateParkingList) {
-    this.privateParkingList.clear();
+    public synchronized void onPrivateParkingListRecived(ArrayList<PrivateParking> privateParkingList) {
+        this.privateParkingList.clear();
         for (PrivateParking privateParking : privateParkingList) {
             SimpleParking simpleParking = new SimpleParking();
             simpleParking.setId(privateParking.getId());
             simpleParking.setName(privateParking.getName());
             simpleParking.setRating(privateParking.getRating());
             simpleParking.setType(KeyWords.PRIVATEPARKING);
+            simpleParking.setLatitude(privateParking.getLatitude());
+            simpleParking.setLongitude(privateParking.getLongitude());
             this.privateParkingList.add(simpleParking);
         }
+        Log.i("Flag", "join" + privateParkingList.size());
         privateReady = true;
         joinParkingList();
 
     }
 
     @Override
-    public void onStreetParkingRecived(ArrayList<StreetParking> streetParkingList) {
-        this.simpleParkingList.clear();
+    public synchronized void onStreetParkingRecived(ArrayList<StreetParking> streetParkingList) {
+        this.streetParkingList.clear();
         for (StreetParking streetParking : streetParkingList) {
             SimpleParking simpleParking = new SimpleParking();
             simpleParking.setId(streetParking.getId());
             simpleParking.setName(streetParking.getName());
             simpleParking.setRating(streetParking.getRating());
             simpleParking.setType(KeyWords.STREETPARKING);
+            simpleParking.setLatitude(streetParking.getLatitude1());
+            simpleParking.setLongitude(streetParking.getLongitude1());
             this.streetParkingList.add(simpleParking);
         }
         streetReady = true;
@@ -76,12 +108,49 @@ public class ParkingListPresenter implements IParkingListPresenter, IParkingList
     }
 
     @Override
-    public void joinParkingList() {
-        simpleParkingList.clear();
-        Log.i("Flag", "JOIN COUNT" + streetReady + privateReady);
+    public synchronized void joinParkingList() {
+        this.simpleParkingList.clear();
+        Log.i("Flag", "JOIN COUNT" + streetReady + privateReady + privateChecked);
         if (streetReady == publicChecked && privateReady == privateChecked) {
+            Log.i("Flag", "join");
+
             simpleParkingList.addAll(streetParkingList);
             simpleParkingList.addAll(privateParkingList);
+
+            Log.i("Flag", "join" + privateParkingList.size());
+
+            if (radioGroup.getCheckedRadioButtonId()== R.id.rbt_rating) {
+                Collections.sort(simpleParkingList, new Comparator<SimpleParking>() {
+                    @Override
+                    public int compare(SimpleParking o1, SimpleParking o2) {
+                        if (o1.getType().equals(KeyWords.STREETPARKING) && o2.getType().equals(KeyWords.PRIVATEPARKING)) {
+                            return -1;
+                        } else if (o2.getType().equals(KeyWords.STREETPARKING) && o1.getType().equals(KeyWords.PRIVATEPARKING)) {
+                            return 1;
+                        }
+                        return (int) (Double.parseDouble(o1.getRating()) - Double.parseDouble(o2.getRating()));
+                    }
+                });
+            } else if (radioGroup.getCheckedRadioButtonId()== R.id.rbt_range) {
+                Collections.sort(simpleParkingList, new Comparator<SimpleParking>() {
+                    @Override
+                    public int compare(SimpleParking o1, SimpleParking o2) {
+                        if (o1.getType().equals(KeyWords.STREETPARKING) && o2.getType().equals(KeyWords.PRIVATEPARKING)) {
+                            return -1;
+                        } else if (o2.getType().equals(KeyWords.STREETPARKING) && o1.getType().equals(KeyWords.PRIVATEPARKING)) {
+                            return 1;
+                        }
+                        Location o1Location = new Location("");
+                        o1Location.setLatitude(Double.parseDouble(o1.getLatitude()));
+                        o1Location.setLongitude(Double.parseDouble(o1.getLongitude()));
+                        Location o2Location = new Location("");
+                        o2Location.setLatitude(Double.parseDouble(o2.getLatitude()));
+                        o2Location.setLongitude(Double.parseDouble(o2.getLongitude()));
+                        return (int) (location.distanceTo(o1Location)-location.distanceTo(o2Location));
+                    }
+                });
+            }
+
             parkingListView.showSimpleParkingList(simpleParkingList);
         }
     }

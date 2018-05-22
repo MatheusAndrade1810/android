@@ -23,6 +23,7 @@ class LocalAdapter extends ArrayAdapter<SimpleParking> {
         super(context, 0, objects);
         this.context = context;
         this.simpleParkingList = objects;
+        Log.i("Flag","obg size"+objects.size());
     }
 
     @Override

@@ -41,20 +41,20 @@ public class MainPresenter implements IMainPresenter, IMainInteractor.MainListen
 
     @Override
     public void onLocationChange(Location location){
-
+        mainView.newLocation(location);
     }
 
     @Override
     public void onPrivateParkRecived(ArrayList<PrivateParking> privateParkingList){
         for (PrivateParking privateParking : privateParkingList) {
-            mainView.addMarker(new LatLng(Double.parseDouble(privateParking.getLatitude()), Double.parseDouble(privateParking.getLongitude())), privateParking.getName());
+            mainView.addMarker(new LatLng(Double.parseDouble(privateParking.getLatitude()), Double.parseDouble(privateParking.getLongitude())), privateParking.getName()+ " : " + privateParking.getEnptySpots());
         }
     }
 
     @Override
     public void onStreetParkListRecived(ArrayList<StreetParking> streetParkList) {
         for (StreetParking streetParking : streetParkList) {
-            mainView.addLine(new LatLng(Double.parseDouble(streetParking.getLatitude1()),Double.parseDouble(streetParking.getLongitude1())),new LatLng(Double.parseDouble(streetParking.getLatitude2()),Double.parseDouble(streetParking.getLongitude2())),streetParking.getName());
+            mainView.addLine(new LatLng(Double.parseDouble(streetParking.getLatitude1()),Double.parseDouble(streetParking.getLongitude1())),new LatLng(Double.parseDouble(streetParking.getLatitude2()),Double.parseDouble(streetParking.getLongitude2())),streetParking.getName() + " : " + streetParking.getProbability());
         }
     }
 
@@ -66,5 +66,10 @@ public class MainPresenter implements IMainPresenter, IMainInteractor.MainListen
     @Override
     public void drawStreetPark() {
         mainInteractor.getStreetParks(this);
+    }
+
+    @Override
+    public void getLocation() {
+        mainInteractor.getLocation(mMap,this);
     }
 }

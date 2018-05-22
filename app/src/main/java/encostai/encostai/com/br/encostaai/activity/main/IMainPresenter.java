@@ -10,4 +10,6 @@ public interface IMainPresenter {
     void drawPrivatePark();
 
     void drawStreetPark();
+
+    void getLocation();
 }

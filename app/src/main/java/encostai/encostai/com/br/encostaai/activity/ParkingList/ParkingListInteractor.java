@@ -31,16 +31,20 @@ public class ParkingListInteractor implements IParkingListInteractor {
     }
 
     @Override
-    public void getPrivateParkingList(final ParkingListListener listener) {
+    public synchronized void getPrivateParkingList(final ParkingListListener listener) {
         privateParkingListListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                privateParkingList.clear();
+                Log.i("Flag","clear private"+privateParkingList.size());
                 for (DataSnapshot data:dataSnapshot.getChildren()) {
                     PrivateParking privateParking = data.getValue(PrivateParking.class);
                     privateParking.setId(data.getKey());
                     privateParkingList.add(privateParking);
                 }
                 if(!privateParkingList.isEmpty()){
+                    Log.i("Flag","recived private"+ privateParkingList.size());
+
                     listener.onPrivateParkingListRecived(privateParkingList);
                 }
             }
@@ -50,15 +54,15 @@ public class ParkingListInteractor implements IParkingListInteractor {
 
             }
         };
-        databaseReference.child("privateParking").addListenerForSingleValueEvent(privateParkingListListener);
+        databaseReference.child("privateParking").addValueEventListener(privateParkingListListener);
     }
 
     @Override
-    public void getStreetParkingList(final ParkingListListener listener) {
-
+    public synchronized void getStreetParkingList(final ParkingListListener listener) {
         streetParkingListListner = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                streetParkingList.clear();
                 for (DataSnapshot data:dataSnapshot.getChildren()) {
                     StreetParking streetParking = data.getValue(StreetParking.class);
                     streetParking.setId(data.getKey());
@@ -74,6 +78,6 @@ public class ParkingListInteractor implements IParkingListInteractor {
 
             }
         };
-        databaseReference.child("streetParking").addListenerForSingleValueEvent(streetParkingListListner);
+        databaseReference.child("streetParking").addValueEventListener(streetParkingListListner);
     }
 }

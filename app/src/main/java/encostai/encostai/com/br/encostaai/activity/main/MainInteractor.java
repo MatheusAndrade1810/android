@@ -23,7 +23,7 @@ import encostai.encostai.com.br.encostaai.models.StreetParking;
 import encostai.encostai.com.br.encostaai.utils.FirebaseConfig;
 import encostai.encostai.com.br.encostaai.utils.Preferences;
 
-public class MainInteractor implements IMainInteractor{
+public class MainInteractor implements IMainInteractor {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -52,38 +52,32 @@ public class MainInteractor implements IMainInteractor{
     @Override
     public GoogleMap onMapReady(MainActivity context, final GoogleMap mMap, final MainListener listener) {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(context,new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        }else{
-            if(!mMap.isMyLocationEnabled()){
+            ActivityCompat.requestPermissions(context, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        } else {
+            if (!mMap.isMyLocationEnabled()) {
                 mMap.setMyLocationEnabled(true);
 
-                LocationManager locationManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
-                Location myLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER); }
+                LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+                Location myLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+
 
         }
-
-        mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
-                listener.onLocationChange(location);
-
-            }
-        });
 
         return mMap;
     }
 
-    public void getPrivateParks(final MainListener listener){
+    public void getPrivateParks(final MainListener listener) {
 
         privateParkListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot data: dataSnapshot.getChildren()) {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
                     PrivateParking privateParking = data.getValue(PrivateParking.class);
                     privateParkingList.add(privateParking);
 
                 }
-                if(!privateParkingList.isEmpty()){
+                if (!privateParkingList.isEmpty()) {
                     listener.onPrivateParkRecived(privateParkingList);
                 }
 
@@ -94,7 +88,7 @@ public class MainInteractor implements IMainInteractor{
 
             }
         };
-        databaseReference.child("privateParking").addListenerForSingleValueEvent(privateParkListener);
+        databaseReference.child("privateParking").addValueEventListener(privateParkListener);
 
     }
 
@@ -104,12 +98,12 @@ public class MainInteractor implements IMainInteractor{
         streetParkListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot data: dataSnapshot.getChildren()) {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
                     StreetParking streetParking = data.getValue(StreetParking.class);
                     streetParkingList.add(streetParking);
 
                 }
-                if(!streetParkingList.isEmpty()){
+                if (!streetParkingList.isEmpty()) {
                     listener.onStreetParkListRecived(streetParkingList);
                 }
 
@@ -120,6 +114,17 @@ public class MainInteractor implements IMainInteractor{
 
             }
         };
-        databaseReference.child("streetParking").addListenerForSingleValueEvent(streetParkListener);
+        databaseReference.child("streetParking").addValueEventListener(streetParkListener);
+    }
+
+    @Override
+    public void getLocation(GoogleMap mMap, final MainListener listener) {
+        mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+                listener.onLocationChange(location);
+
+            }
+        });
     }
 }

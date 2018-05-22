@@ -1,5 +1,6 @@
 package encostai.encostai.com.br.encostaai.activity.main;
 
+import android.location.Location;
 import android.view.View;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -12,4 +13,6 @@ public interface IMainView {
     void addLine(LatLng latLng1, LatLng latLng2, String tittle);
 
     void goTo(LatLng latLng);
+
+    void newLocation(Location location);
 }

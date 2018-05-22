@@ -3,6 +3,7 @@ package encostai.encostai.com.br.encostaai.activity.main;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.maps.model.TileOverlayOptions;
 
 import encostai.encostai.com.br.encostaai.R;
 import encostai.encostai.com.br.encostaai.activity.ParkingList.ParkingListActivity;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, OnMapR
     };
 
     private IMainPresenter presenter;
+    private Location location;
 
 
     private static final LatLng PERTH = new LatLng(-8.0630769, -34.87146094);
@@ -89,12 +92,11 @@ public class MainActivity extends AppCompatActivity implements IMainView, OnMapR
 
         goTo(new LatLng(-8.06301848, -34.8714073));
 
+        presenter.getLocation();
+
 
 
     }
-
-
-
 
     // Navegação lateral
     @SuppressWarnings("StatementWithEmptyBody")
@@ -109,6 +111,12 @@ public class MainActivity extends AppCompatActivity implements IMainView, OnMapR
 
        } else if (id == R.id.nav_ParkList) {
             intent = new Intent(MainActivity.this, ParkingListActivity.class);
+            if(location!=null){
+                Bundle bundle = new Bundle();
+                bundle.putDouble("latitude", this.location.getLatitude());
+                bundle.putDouble("longitude", this.location.getLongitude());
+                intent.putExtras(bundle);
+            }
             startActivity(intent);
 
         } else if (id == R.id.nav_Favorites) {
@@ -142,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements IMainView, OnMapR
 
     @Override
     public void addMarker(LatLng latLng, String tittle){
-        mMap.addMarker(new MarkerOptions().position(latLng)).setTitle(tittle);
+        mMap.addMarker(new MarkerOptions().position(latLng).alpha((float) 0.75).title(tittle));
     }
 
     @Override
@@ -152,11 +160,17 @@ public class MainActivity extends AppCompatActivity implements IMainView, OnMapR
         .width(25)
         .color(Color.BLUE)
         .geodesic(true));
+        mMap.addMarker(new MarkerOptions().position(latLng1).alpha((float) 0.75).title(tittle));
     }
 
     @Override
     public void goTo(LatLng latLng){
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(18.0f));
+    }
+
+    @Override
+    public void newLocation(Location location){
+        this.location = location;
     }
 }

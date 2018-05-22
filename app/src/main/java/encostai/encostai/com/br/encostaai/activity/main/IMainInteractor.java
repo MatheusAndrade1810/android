@@ -15,6 +15,8 @@ public interface IMainInteractor {
 
     void getStreetParks(MainListener listner);
 
+    void getLocation(GoogleMap mMap, MainListener listener);
+
     interface MainListener {
 
         void onError();

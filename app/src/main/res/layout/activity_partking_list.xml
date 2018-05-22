@@ -6,8 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ParkingList.ParkingListActivity"
-    android:theme="@style/AppTheme.AppBarOverlay" >
+    android:theme="@style/AppTheme.AppBarOverlay"
+    tools:context=".activity.ParkingList.ParkingListActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -17,44 +17,100 @@
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <LinearLayout
+        android:id="@+id/ll_top_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estacionamentos"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ordedm"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:layout_marginLeft="120dp"
+            android:paddingRight="30dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/ll_private"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/toolbar">
+        android:layout_below="@id/ll_top_name"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Priavdo"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         <CheckBox
             android:id="@+id/chk_private"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"/>
+            android:checked="true" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_public"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/toolbar"
-        android:layout_toRightOf="@id/ll_private">
+        android:layout_below="@id/ll_top_name"
+        android:layout_toRightOf="@id/ll_private"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Publico"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
         <CheckBox
             android:id="@+id/chk_public"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"/>
+            android:checked="true" />
     </LinearLayout>
 
+    <RadioGroup
+        android:id="@+id/rgp_sort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/ll_top_name"
+        android:orientation="horizontal">
 
+        <RadioButton
+            android:id="@+id/rbt_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Id"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+        <RadioButton
+            android:id="@+id/rbt_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nota"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+        <RadioButton
+            android:id="@+id/rbt_range"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distancia"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+    </RadioGroup>
 
 
     <ListView
