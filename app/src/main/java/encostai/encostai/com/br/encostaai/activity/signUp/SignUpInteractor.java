@@ -36,6 +36,7 @@ public class SignUpInteractor implements ISignUpInteractor {
             user.setPassword(password);
             user.setExposure(exposure);
 
+
             firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword()).addOnCompleteListener(signUpActivity, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {

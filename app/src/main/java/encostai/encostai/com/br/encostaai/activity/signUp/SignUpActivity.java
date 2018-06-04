@@ -1,12 +1,16 @@
 package encostai.encostai.com.br.encostaai.activity.signUp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import encostai.encostai.com.br.encostaai.R;
@@ -23,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity implements ISignUpView, Vi
     private ISignUpPresenter presenter;
     private Switch exposure;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,8 @@ public class SignUpActivity extends AppCompatActivity implements ISignUpView, Vi
         confirmationPassword = findViewById(R.id.editConfirNovaSenha);
         exposure = findViewById(R.id.ExposureButton);
         presenter = new SignUpPresenter(this, new SignUpInteractor());
+
+
     }
 
 
@@ -41,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity implements ISignUpView, Vi
     public void onClick(View v) {
 
         presenter.registerUser(name.getText().toString(), email.getText().toString(), password.getText().toString(), confirmationPassword.getText().toString(), exposure.isChecked());
+
 
     }
 
